@@ -1,27 +1,51 @@
 const axios = require('axios');
 
-async function obtenerPokemon(id) {
+const urlUsers = `https://jsonplaceholder.typicode.com/users`;
+const urlPosts = 'https://jsonplaceholder.typicode.com/posts';
 
-  try {
-
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-
-    console.log(`Nombre: ${response.data.name}`);
-
-    console.log(`Altura: ${response.data.height}`);
-
-    console.log(`Peso: ${response.data.weight}`);
-
-    console.log('Tipos: ', response.data.types.map(t => t.type.name).join(', '));
-
-  } catch (error) {
-
-    console.error('Error al obtener el Pokémon:', error.message);
-
-  }
-
+async function getUsers(n = 3) {
+  const { data } = await axios.get(urlUsers);
+  //Te da todos los users asi que nos deshacemos del resto
+  return data.slice(0, n);
 }
 
-// Ejemplo: obtener el Pokémon con ID 1
+async function getUserCantPosts(idUser) {
+  const { data } = await axios.get(urlPosts, { params: { userId: idUser } });
+  return data.length; 
+}
 
-obtenerPokemon(1);
+// --- Enfoque A: Secuencial ---
+async function modoSecuencial(users) {
+  console.log('--- Ejecucion Secuencial ---');
+
+  for (const user of users) {
+    const cont = await getUserCantPosts(user.id);
+    console.log(`${user.name} tiene ${cont} publicaciones`);
+  }
+}
+
+// --- Enfoque B: Concurrente Promise.all ---
+async function modoParalelo(users) {
+  console.log('\n--- Ejecución Paralela ---');
+
+  // map recorre el array users y por cada elemento hace la invocacion, el conjunto se guarda en promesas
+  // queda un array de promesas
+  const promesas = users.map(user => getUserCantPosts(user.id));
+  const cant = await Promise.all(promesas);
+
+  users.forEach(
+    (user, i) => {console.log(`${user.name} tiene ${cant[i]} publicaciones`);} 
+);
+}
+
+async function main() {
+  try {
+    const users = await getUsers(3);   
+    await modoSecuencial(users);
+    await modoParalelo(users);
+  } catch (error) {
+    console.error('Error: ', error.message);
+  }
+}
+
+main();
