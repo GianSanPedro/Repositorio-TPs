@@ -1,67 +1,41 @@
-import Image from "next/image";
 import Saludo from "./components/Saludo";
 import Contador from "./components/Contador";
+import CardProducto from "./components/CardProducto";
 
-/*
-export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-
-      </footer>
-    </div>
-  );
-}
-*/
+const productos = [
+  {
+    id: 1,
+    titulo: "Foto Random 1",
+    imagen: "https://unsplash.com/photos/bTfySKA_WrI/download?ixid=M3wxMjA3fDB8MXxhbGx8MXx8fHx8fHx8MTc1Nzk4ODExMHw&force=true",
+    precio: "$30.00",
+    descripcion: "Descripcion...",
+  },
+  {
+    id: 2,
+    titulo: "Foto Random 2",
+    imagen: "https://images.unsplash.com/photo-1514477917009-389c76a86b68",
+    precio: "$19.990",
+    descripcion: "Descripcion...",
+  },
+  {
+    id: 3,
+    titulo: "Foto Random 3",
+    imagen: "https://unsplash.com/photos/KXmQMNcZGFM/download?ixid=M3wxMjA3fDB8MXxhbGx8Mjl8fHx8fHx8fDE3NTc5ODk4MDl8&force=true",
+    precio: "$54.990",
+    descripcion: "Descripcion...",
+  },
+];
 
 export default function Home() {
   return (
     <main className="mx-auto max-w-2xl p-6 space-y-8">
       <Saludo
-        nombre="Estudiante"
+        nombre="Cliente"
         subtitulo=" TEST: ejemplo de Componente con props (tipado con TypeScript)."
       />
 
       <section className="space-y-3">
-        <h2 className="text-2xl font-semibold">Etiquetas HTML</h2>
-
-        <article className="prose prose-neutral dark:prose-invert">
-          <p>
-            Este es un <strong>párrafo</strong> con una{" "}
-            <a
-              href="https://developer.mozilla.org/es/docs/Web/HTML/Reference/Elements"
-              target="_blank"
-              rel="noreferrer"
-            >
-              listado de etiquetas en MDN
-            </a>.
-          </p>
-
-          <ul>
-            <li>
-              <code>{`<header>`}</code>, <code>{`<main>`}</code>,{" "}
-              <code>{`<footer>`}</code>
-            </li>
-            <li>
-              <code>{`<section>`}</code>, <code>{`<article>`}</code>,{" "}
-              <code>{`<aside>`}</code>
-            </li>
-            <li>
-              <code>{`<h1>`}</code>…<code>{`<h6>`}</code>,{" "}
-              <code>{`<p>`}</code>, <code>{`<a>`}</code>
-            </li>
-          </ul>
-          <br />
-          <p>Relleno: Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto voluptate iste est nesciunt possimus nihil ea illum maxime dolor quo, nostrum sunt facilis, harum consectetur illo a vel et beatae. Reprehenderit repellendus
-          </p>
-          <br />
-          <blockquote>
-            “Los componentes permiten interfaces modulares y mantenibles.”
-          </blockquote>
-        </article>
+        <h2 className="text-2xl font-semibold">No se que hacer :(</h2>
       </section>
 
       <section>
@@ -73,10 +47,22 @@ export default function Home() {
         <Contador />
       </section>
 
-      <footer className="pt-8 border-t">
-        <small className="text-gray-500 dark:text-gray-400">
-          Hecho con Next.js, TypeScript y Tailwind CSS.
-        </small>
+      <h2 className="text-2xl font-semibold">Productos?</h2>
+
+      <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {productos.map((p) => (
+          <CardProducto
+            key={p.id}
+            titulo={p.titulo}
+            imagen={p.imagen}
+            precio={p.precio}
+            descripcion={p.descripcion}
+          />
+        ))}
+      </section>
+
+      <footer className="min-h-48 flex items-center justify-center">
+        <h2 className="text-2xl font-semibold">CopyRights 2025</h2>
       </footer>
     </main>
   );
