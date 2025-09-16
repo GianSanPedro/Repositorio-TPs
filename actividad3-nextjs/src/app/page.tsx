@@ -14,14 +14,14 @@ const productos = [
     id: 2,
     titulo: "Foto Random 2",
     imagen: "https://images.unsplash.com/photo-1514477917009-389c76a86b68",
-    precio: "$19.990",
+    precio: "$20.00",
     descripcion: "Descripcion...",
   },
   {
     id: 3,
     titulo: "Foto Random 3",
     imagen: "https://unsplash.com/photos/KXmQMNcZGFM/download?ixid=M3wxMjA3fDB8MXxhbGx8Mjl8fHx8fHx8fDE3NTc5ODk4MDl8&force=true",
-    precio: "$54.990",
+    precio: "$50.00",
     descripcion: "Descripcion...",
   },
 ];
