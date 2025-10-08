@@ -7,6 +7,5 @@ export function usePokemons(limit: number, offset: number) {
   return useQuery({
     queryKey: ["pokemons", limit, offset],
     queryFn: () => getPokemons(limit, offset),
-    keepPreviousData: true, // mantiene cache entre paginas
   });
 }
