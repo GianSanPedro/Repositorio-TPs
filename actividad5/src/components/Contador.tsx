@@ -1,7 +1,5 @@
 "use client";
 
-/* Todo es Server Component por defecto. Para usar hooks hay que marcar este archivo como Client Component */
-
 import { useState } from "react";
 
 export default function Contador() {
