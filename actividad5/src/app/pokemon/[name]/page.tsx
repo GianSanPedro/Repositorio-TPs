@@ -2,7 +2,7 @@ import axios from "axios";
 import Link from "next/link";
 
 export default async function PokemonDetail({ params }: { params: Promise<{ name: string }> }) {
-  const { name } = await params; // 👈 ahora sí lo esperás
+  const { name } = await params;
 
   const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
   const data = res.data;
@@ -59,7 +59,7 @@ export default async function PokemonDetail({ params }: { params: Promise<{ name
       </div>
 
       <Link href="/" style={{ marginTop: "1.5rem", color: "#4fc3f7" }}>
-        ← Volver a la lista
+        Volver a la lista
       </Link>
     </div>
   );

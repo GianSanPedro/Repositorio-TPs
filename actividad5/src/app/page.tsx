@@ -23,7 +23,7 @@ export default function HomePage() {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <h1 style={{ fontSize: "2rem", margin: "1rem 0", color: "#ffcb05" }}>Pokémon List</h1>
+      <h1 style={{ fontSize: "2rem", margin: "1rem 0", color: "#ffcb05" }}>Pokédex</h1>
       <PokemonList pokemons={pokemons} />
     </div>
   );

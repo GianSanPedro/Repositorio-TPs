@@ -1,20 +1,11 @@
 @import "tailwindcss";
 
-/* Variables globales de color y tipografía */
 :root {
   --background: #0b0b0b;
   --foreground: #ededed;
-  --accent: #ffcb05; /* amarillo Pikachu */
-  --link: #4fc3f7;   /* celeste */
+  --accent: #ffcb05; 
+  --link: #4fc3f7;  
   --font-sans: 'Segoe UI', Arial, sans-serif;
-}
-
-/* Tema oscuro automático */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ffffff;
-  }
 }
 
 /* Estilos globales */
@@ -48,7 +39,7 @@ a:hover {
   color: #81d4fa;
 }
 
-/* Navbar y Footer (si querés mantenerlos uniformes) */
+/* Navbar y Footer */
 header {
   background: #f5f5f5;
   color: #000;
