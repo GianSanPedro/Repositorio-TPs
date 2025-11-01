@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
+import FavoritoModal from "./FavoritoModal";
 import { useAddFavorite, useRemoveFavorite, useFavorites } from "@/app/hooks/useFavorites";
 
 interface PokemonItemProps {
@@ -17,9 +19,15 @@ export default function PokemonItem({ name, id, image }: PokemonItemProps) {
   const isFavorite = favorites?.some((f: any) => f.id === id);
   const isLoading = addFav.isPending || delFav.isPending;
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleGuardarFavorito = (values: { nombre: string; descripcion: string }) => {
+    addFav.mutate({ id, name, image, ...values });
+    setIsModalOpen(false);
+  };
+
   const handleToggleFavorite = () => {
     if (isFavorite) delFav.mutate(id);
-    else addFav.mutate({ id, name, image });
+    else setIsModalOpen(true); 
   };
 
   return (
@@ -68,11 +76,7 @@ export default function PokemonItem({ name, id, image }: PokemonItemProps) {
             transition: "background 0.2s",
           }}
         >
-          {isLoading
-            ? "..."
-            : isFavorite
-            ? "❤️ Quitar"
-            : "🤍 Fav"}
+          {isLoading ? "..." : isFavorite ? "❤️ Quitar" : "🤍 Fav"}
         </button>
       </div>
 
@@ -81,8 +85,12 @@ export default function PokemonItem({ name, id, image }: PokemonItemProps) {
           Error: {addFav.error?.message || delFav.error?.message}
         </p>
       )}
+
+      <FavoritoModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onGuardar={handleGuardarFavorito}
+      />
     </div>
   );
 }
-
-
