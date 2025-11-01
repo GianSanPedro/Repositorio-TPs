@@ -25,15 +25,19 @@ export default function PokemonList() {
   return (
     <div className="flex flex-col items-center">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-5xl">
-        {data.results.map((p: any) => (
-          <PokemonItem
-            key={p.name}
-            name={p.name}
-            image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-              p.url.split("/")[6]
-            }.png`}
-          />
-        ))}
+        {data.results.map((p: any) => {
+          const id = parseInt(p.url.split("/")[6]); 
+          const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+
+          return (
+            <PokemonItem
+              key={id}
+              id={id}      
+              name={p.name}
+              image={image}
+            />
+          );
+        })}
       </div>
 
       <BotonCargarMas

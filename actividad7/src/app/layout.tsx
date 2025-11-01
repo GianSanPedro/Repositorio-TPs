@@ -1,13 +1,13 @@
+"use client";
+
 import "./globals.css";
 import Link from "next/link";
 import ReactQueryProvider from "./providers/ReactQueryProvider";
-
-export const metadata = {
-  title: "Pokémon Center - React Query Edition",
-  description: "Actividad 6 con la estética original restaurada",
-};
+import { usePathname } from "next/navigation";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+
   return (
     <html lang="es">
       <body
@@ -42,6 +42,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <h2 style={{ margin: 0, fontWeight: "bold" }}>Pokémon Center</h2>
 
             <nav style={{ display: "flex", gap: "1rem" }}>
+              <Link
+                href="/favorites"
+                style={{
+                  color: pathname === "/favorites" ? "#ffde59" : "#ffffff",
+                  textDecoration: "none",
+                  fontWeight: "bold",
+                  transition: "color 0.3s",
+                }}
+              >
+                ⭐ Favoritos
+              </Link>
               <Link href="/" style={{ fontWeight: 600, color: "#000" }}>
                 Lista
               </Link>
